@@ -86,7 +86,7 @@ int main(){
 		imprimirmatriz(matrizmasmorra, sizefilas, columnas);
 		cout << "La cantidad de libres son: "<<seguros<<" y la cantidad de trampas son: "<<trampas<<endl;
 		liberarMatriz(matrizmasmorra, columnas);
-		cout <<"Desea volver[s/n]: "<<endl;
+		cout <<"Desea volver[s/n]:"<<endl;
 		cin >> resp;
 	}
 
