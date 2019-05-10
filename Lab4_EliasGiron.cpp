@@ -70,7 +70,7 @@ int main(){
 					} else if(matrizmasmorra[i-1][j-1] == '^' && matrizmasmorra[i-1][j] == '.' && matrizmasmorra[i-1][j+1] == '.'){
 						matrizmasmorra[i][j] = '^';
 						trampas++;
-					} else if(matrizmasmorra[i][j-1] == '.' && matrizmasmorra[i-1][j] == '^' && matrizmasmorra[i-1][j+1] == '^'){
+					} else if(matrizmasmorra[i-1][j-1] == '.' && matrizmasmorra[i-1][j] == '^' && matrizmasmorra[i-1][j+1] == '^'){
 						matrizmasmorra[i][j] = '^';
 						trampas++;
 					} else if(matrizmasmorra[i-1][j-1] == '^' && matrizmasmorra[i-1][j] == '^' && matrizmasmorra[i-1][j+1] == '.'){
