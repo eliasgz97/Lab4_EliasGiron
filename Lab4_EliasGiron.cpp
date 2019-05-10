@@ -21,10 +21,8 @@ void liberarMatriz(char**& labmatrix,int size){
                 delete[] labmatrix[i];
                 //labmatrix[i] = NULL;
         }
-        if(labmatrix != NULL){
-                delete[] labmatrix;
-                //labmatrix = NULL;
-        }
+        delete[] labmatrix;
+        //labmatrix = NULL;
 }
 int main(){
 	char resp = 's';
