@@ -13,17 +13,29 @@ void imprimirmatriz(char** matrizmasmorra, int sizefilas, int columnas){
                 }
 		cout << endl;
          }
-}
+	cout << endl;
 
+}
+void liberarMatriz(char**& labmatrix,int size){
+        for (int i = 0; i < size; i++){
+                delete[] labmatrix[i];
+                labmatrix[i] = NULL;
+        }
+        if(labmatrix != NULL){
+                delete[] labmatrix;
+                labmatrix = NULL;
+        }
+}
 int main(){
 	char resp = 's';
 	string caracteres = "";
-	int fila_inicial = 0, sizefilas = 0, columnas = 0;
+	int fila_inicial = 0, sizefilas = 0, columnas = 0, seguros = 0;
 	while (resp == 's' || resp == 'S'){
 		cout <<"Ingrese el numero de filas: "<<endl;
 		cin >> sizefilas;
 		cout << "Ingrese cadena de caracteres: "<<endl;
 		cin >> caracteres;
+		cout << endl;
 		columnas = caracteres.length();
 		char** matrizmasmorra = NULL;
 		matrizmasmorra = new char*[sizefilas];
@@ -38,14 +50,17 @@ int main(){
 				if(j == 0){
 					if(matrizmasmorra[i-1][j] == '.' && matrizmasmorra[i-1][j+1] == '.'){
 						matrizmasmorra[i][j] = '.';
+						seguros++;
 					} else {
 						matrizmasmorra[i][j] = '^';
 					}
 				} else if(j == columnas-1){
 					if(matrizmasmorra[i-1][j-1] == '.' && matrizmasmorra[i-1][j] == '.'){
 						matrizmasmorra[i][j] = '.';
+						seguros++;
 					} else {
 						matrizmasmorra[i][j] = '^';
+						seguros++;
 					}
 				} else {
 					if(matrizmasmorra[i-1][j-1] == '.' && matrizmasmorra[i-1][j] == '.' && matrizmasmorra[i-1][j+1] == '^'){
@@ -58,12 +73,13 @@ int main(){
 						matrizmasmorra[i][j] = '^';
 					} else {
 						matrizmasmorra[i][j] = '.';
+						seguros++;
 					}
                                 } 	
 			}
 		}
 		imprimirmatriz(matrizmasmorra, sizefilas, columnas);
-
+		liberarMatriz(matrizmasmorra, columnas);
 		cout <<"Desea volver[s/n]: "<<endl;
 		cin >> resp;
 	}
