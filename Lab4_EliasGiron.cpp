@@ -19,17 +19,17 @@ void imprimirmatriz(char** matrizmasmorra, int sizefilas, int columnas){
 void liberarMatriz(char**& labmatrix,int size){
         for (int i = 0; i < size; i++){
                 delete[] labmatrix[i];
-                labmatrix[i] = NULL;
+                //labmatrix[i] = NULL;
         }
         if(labmatrix != NULL){
                 delete[] labmatrix;
-                labmatrix = NULL;
+                //labmatrix = NULL;
         }
 }
 int main(){
 	char resp = 's';
 	string caracteres = "";
-	int fila_inicial = 0, sizefilas = 0, columnas = 0, seguros = 0;
+	int fila_inicial = 0, sizefilas = 0, columnas = 0, seguros = 0, trampas = 0;
 	while (resp == 's' || resp == 'S'){
 		cout <<"Ingrese el numero de filas: "<<endl;
 		cin >> sizefilas;
@@ -53,24 +53,29 @@ int main(){
 						seguros++;
 					} else {
 						matrizmasmorra[i][j] = '^';
+						trampas++;
 					}
 				} else if(j == columnas-1){
-					if(matrizmasmorra[i-1][j-1] == '.' && matrizmasmorra[i-1][j] == '.'){
+					if(matrizmasmorra[i-1][j] == '.' && matrizmasmorra[i-1][j+1] == '.'){
 						matrizmasmorra[i][j] = '.';
 						seguros++;
 					} else {
 						matrizmasmorra[i][j] = '^';
-						seguros++;
+						trampas++;
 					}
 				} else {
 					if(matrizmasmorra[i-1][j-1] == '.' && matrizmasmorra[i-1][j] == '.' && matrizmasmorra[i-1][j+1] == '^'){
                                         	matrizmasmorra[i][j] = '^';
-					} else if(matrizmasmorra[i-1][j] == '^' && matrizmasmorra[i-1][j+1] == '.' && matrizmasmorra[i-1][j+1] == '.'){
+						trampas++;
+					} else if(matrizmasmorra[i-1][j-1] == '^' && matrizmasmorra[i-1][j] == '.' && matrizmasmorra[i-1][j+1] == '.'){
 						matrizmasmorra[i][j] = '^';
+						trampas++;
 					} else if(matrizmasmorra[i][j-1] == '.' && matrizmasmorra[i-1][j] == '^' && matrizmasmorra[i-1][j+1] == '^'){
 						matrizmasmorra[i][j] = '^';
+						trampas++;
 					} else if(matrizmasmorra[i-1][j-1] == '^' && matrizmasmorra[i-1][j] == '^' && matrizmasmorra[i-1][j+1] == '.'){
 						matrizmasmorra[i][j] = '^';
+						trampas++;
 					} else {
 						matrizmasmorra[i][j] = '.';
 						seguros++;
@@ -79,6 +84,7 @@ int main(){
 			}
 		}
 		imprimirmatriz(matrizmasmorra, sizefilas, columnas);
+		cout << "La cantidad de libres son: "<<seguros<<" y la cantidad de trampas son: "<<trampas<<endl;
 		liberarMatriz(matrizmasmorra, columnas);
 		cout <<"Desea volver[s/n]: "<<endl;
 		cin >> resp;
