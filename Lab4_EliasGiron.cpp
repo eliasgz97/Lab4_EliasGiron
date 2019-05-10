@@ -84,7 +84,7 @@ int main(){
 		imprimirmatriz(matrizmasmorra, sizefilas, columnas);
 		cout << "La cantidad de libres son: "<<seguros<<" y la cantidad de trampas son: "<<trampas<<endl;
 		//liberar casillas
-	        for(int i = 0; i < columnas; i++){
+	        for(int i = 1; i < columnas; i++){
         	        delete[] matrizmasmorra[i];
                 	matrizmasmorra[i] = NULL;
         	}
@@ -93,8 +93,6 @@ int main(){
                 	delete[] matrizmasmorra;
                 	matrizmasmorra = NULL;
         	}
-
-
 		cout <<"Desea volver[s/n]:"<<endl;
 		cin >> resp;
 	}
