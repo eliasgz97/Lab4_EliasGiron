@@ -42,6 +42,11 @@ int main(){
 		}
 		for(int i = 0; i < columnas; i++){
 			matrizmasmorra[0][i] = caracteres[i];
+			if(caracteres[i] == '.'){
+				seguros++;
+			} else {
+				trampas++;
+			}
 		}
 		for(int i = 1; i < sizefilas; i++){
 			for(int j = 0; j < columnas; j++){	
@@ -54,7 +59,7 @@ int main(){
 						trampas++;
 					}
 				} else if(j == columnas-1){
-					if(matrizmasmorra[i-1][j] == '.' && matrizmasmorra[i-1][j+1] == '.'){
+					if(matrizmasmorra[i-1][j] == '.' && matrizmasmorra[i-1][j-1] == '.'){
 						matrizmasmorra[i][j] = '.';
 						seguros++;
 					} else {
